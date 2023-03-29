@@ -27,6 +27,27 @@ namespace Dojo
                     case "1":
                         numero = 1;
                         Console.WriteLine("\nVocê escolheu o número 1n--------------------------------\n");
+                        Console.WriteLine("Escolha um valor 1: ");
+                        float v1;
+                        bool valor1 = float.TryParse(Console.ReadLine(), out v1);
+                        Console.WriteLine("Escolha um valor 2: ");
+                        float v2;
+                        bool valor2 = float.TryParse(Console.ReadLine(), out v2);
+                        if (valor1 == false)
+                        {
+                            Console.WriteLine("Esse número não é válido.");
+                            break;
+                        }
+                        if (valor2 == false)
+                        {
+                            Console.WriteLine("Esse número não é válido.");
+                            break;
+                        }
+                        else
+                        {
+                            var soma = v1 + v2;
+                            Console.WriteLine("O resultado da soma é " + $"{soma}");
+                        }
                         break;
                     case "2":
                         numero = 2;
