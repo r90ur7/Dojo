@@ -15,22 +15,27 @@ namespace Dojo
 
             do
             {
-                Console.WriteLine("Escolha um número de 0 a 9 ou escreva 'sair':\n");
+                Console.WriteLine("Escolha um número de 0 a 9 ou escreva 'sair':\n---------------------------\n");
+                Console.WriteLine("0)Sair:\n");
+                Console.WriteLine("1)Soma:\n");
+                Console.WriteLine("2)Conversão de metros para milímetros:\n");
                 opcao = Console.ReadLine().ToLower();
 
                 switch (opcao)
                 {
                     case "0":
                         numero = 0;
-                        Console.WriteLine("\nVocê escolheu o número 0\\n--------------------------------\n");
+                        Console.WriteLine("\nVocê escolheu sair. Até a próxima!\n--------------------------------\n  ");
+                        opcao = "sair";
                         break;
+
                     case "1":
                         numero = 1;
-                        Console.WriteLine("\nVocê escolheu o número 1n--------------------------------\n");
-                        Console.WriteLine("Escolha um valor 1: ");
+                        Console.WriteLine("\nVocê escolheu o número 1 - Soma \n--------------------------------\n");
+                        Console.WriteLine("Escolha o primeiro valor: ");
                         float v1;
                         bool valor1 = float.TryParse(Console.ReadLine(), out v1);
-                        Console.WriteLine("Escolha um valor 2: ");
+                        Console.WriteLine("Escolha o segundo valor: ");
                         float v2;
                         bool valor2 = float.TryParse(Console.ReadLine(), out v2);
                         if (valor1 == false)
@@ -49,10 +54,25 @@ namespace Dojo
                             Console.WriteLine("O resultado da soma é " + $"{soma}");
                         }
                         break;
+
                     case "2":
                         numero = 2;
-                        Console.WriteLine("\nVocê escolheu o número 2\n----------------------------\n");
+                        Console.WriteLine("\nVocê escolheu o 2 - Conversão de metros para milímetros\n----------------------------\n");
+                        Console.WriteLine("\nEscolha um Valor Em Metros \n----------------------------\n");
+                        float Metros;
+                        bool Metrosbol = float.TryParse(Console.ReadLine(), out Metros);
+                        float mm = Metros * 1000;
+                        
+                        if(Metrosbol == false) {
+                            Console.WriteLine("Esse número não é válido.");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"A Quantidade {Metros} em milimetros é  {mm}");
+                        }
                         break;
+
                     case "3":
                         numero = 3;
                         Console.WriteLine("\nVocê escolheu o número 3\n---------------------------\n");
