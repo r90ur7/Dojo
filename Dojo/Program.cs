@@ -234,7 +234,7 @@ namespace Dojo
                         }
                         table.Write();
 
-                         int CalcularFatorial(int n)
+                        int CalcularFatorial(int n)
                         {
                             if (n == 0 || n == 1)
                             {
@@ -252,18 +252,56 @@ namespace Dojo
                         Console.Write($"\nDigite Sua Renda Bruta: {simboloMoeda} ");
                         double rendaBruta;
                         bool rendaBrutaValid = double.TryParse(Console.ReadLine(), out rendaBruta);
-                        if(rendaBrutaValid == false)
+                        if (rendaBrutaValid == false)
                         {
                             Console.WriteLine("Renda Inválida.");
                         }
-                        Console.Write($"\nDigite Sua Renda Liquida: {simboloMoeda} ");
-                        double rendaLiquida ;
-                        bool rendaLiquidaValid = double.TryParse(Console.ReadLine(), out rendaLiquida);
-                        if (rendaLiquidaValid == false)
+                        Console.WriteLine("\n\nDigite suas deduções permitidas (digite 0 para parar): ");
+                        List<double> deducoes = new List<double>();
+                        double deducao;
+                        bool deducaoValid = double.TryParse(Console.ReadLine(), out deducao);
+                        while (deducao != 0)
                         {
-                            Console.WriteLine("Renda Inválida.");
+                            if (deducaoValid == false)
+                            {
+                                Console.WriteLine("\n\nDedução inválida Inválida.\n");
+                            }
+                            deducoes.Add(deducao);
+                            deducao = Convert.ToDouble(Console.ReadLine());
                         }
+                        double deducaoSoma = 0;
 
+                        foreach (var deducaoid in deducoes)
+                        {
+                            deducaoSoma = deducaoSoma + deducaoid;
+                        }
+                        double rendaLiquida = rendaBruta - deducaoSoma;
+                        Console.WriteLine($"Sua Renda Liquida {simboloMoeda} {rendaLiquida}");
+
+                        double aliquota = 0;
+
+                        if (rendaLiquida <= 1903.98)
+                        {
+                            Console.WriteLine($"isento de imposto de renda");
+                        }
+                        else if (rendaLiquida <= 2826.65)
+                        {
+                            aliquota = (7.5 / 100);
+                        }
+                        else if (rendaLiquida <= 3751.05)
+                        {
+                            aliquota = (15 / 100);
+                        }
+                        else if (rendaLiquida <= 4664.68)
+                        {
+                            aliquota = (22.5 / 100);
+                        }
+                        else
+                        {
+                            aliquota = (27.5 / 100);
+                        }
+                        double Imposto = rendaLiquida * aliquota;
+                        Console.WriteLine($"Seu imposto de Renda é {Imposto}");
                         break;
                     case "12":
                         numero = 12;
