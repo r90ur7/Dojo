@@ -142,7 +142,52 @@ namespace Dojo
                         break;
                     case "6":
                         numero = 6;
-                        Console.WriteLine("\nVocê escolheu o número 6\n-----------------------------\n");
+                        string Consulta;
+                        Console.WriteLine("\n\n----------------------------\n\nVOCÊ ESCOLHEU O 6 - CALCULAR O IMC\n\n----------------------------\n");
+                        Console.Write("\nDigite Seu Peso: ");
+                        float Peso;
+                        bool PesoValid = float.TryParse(Console.ReadLine(), out Peso);
+                        if (PesoValid == false)
+                        {
+                            Console.WriteLine("Esse Peso não é Válido.");
+                        }
+                        else
+                        {
+                            Console.Write("\nDigite Sua Altura: ");
+                            float Altura;
+                            bool AlturaValid = float.TryParse(Console.ReadLine(), out Altura);
+                            float AlturaCenti = Altura / 100;
+                            if (AlturaValid == false)
+                            {
+                                Console.WriteLine("Essa Altura não é Válida.");
+                            }
+                            else
+                            {
+                                double IMC = Peso / Math.Pow(AlturaCenti, 2);
+                                if(IMC < 18.5)
+                                {
+                                    Consulta = "Abaixo Do Peso";
+                                }
+                                else if (IMC == 18.5 || IMC > 24.9)
+                                {
+                                    Consulta = "No Peso Ideal";
+                                }
+                                else if (IMC == 30 || IMC > 34.9)
+                                {
+                                    Consulta = "Na Obesidade grau 1";
+                                }
+                                else if (IMC == 35 || IMC > 39.9)
+                                {
+                                    Consulta = "Na Obesidade grau 2";
+                                }
+                                else
+                                {
+                                    Consulta = "Obesidade grau 3";
+                                }
+                                IMC = IMC / 10000;
+                                Console.Write($"\n*****************************\n\nRESULTADO!!!!!\n\nVocê Está {Consulta}\n\nO IMC Do Peso {Peso} Na Altura {Altura:F2} é {IMC:F2}\n\n*****************************\n");
+                            }
+                        }
                         break;
                     case "7":
                         numero = 7;
