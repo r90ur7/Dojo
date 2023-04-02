@@ -27,6 +27,7 @@ namespace Dojo
                 Console.WriteLine("6)Calcular IMC:\n");
                 Console.WriteLine("9)Múltiplos de 3 entre 0 e 100:\n");
                 Console.WriteLine("10)Fatoriais De 1 Até 10:\n");
+                Console.WriteLine("11)Calcular o Imposto De Renda:\n");
                 Console.Write("Resposta: ");
                 opcao = Console.ReadLine().ToLower();
 
@@ -230,8 +231,6 @@ namespace Dojo
                         {
                             int CalcFatorial = CalcularFatorial(Fatorial);
                             table.AddRow($" De {Fatorial} : {CalcFatorial}");
-                            
-
                         }
                         table.Write();
 
@@ -249,7 +248,22 @@ namespace Dojo
                         break;
                     case "11":
                         numero = 11;
-                        Console.WriteLine("\nVocê escolheu o número 11\n-----------------------------\n");
+                        Console.WriteLine("\n\n----------------------------\n\nVocê escolheu o número 11 - CALCULO DE IMPOSTO DE RENDA!!!\n\n----------------------------\n");
+                        Console.Write($"\nDigite Sua Renda Bruta: {simboloMoeda} ");
+                        double rendaBruta;
+                        bool rendaBrutaValid = double.TryParse(Console.ReadLine(), out rendaBruta);
+                        if(rendaBrutaValid == false)
+                        {
+                            Console.WriteLine("Renda Inválida.");
+                        }
+                        Console.Write($"\nDigite Sua Renda Liquida: {simboloMoeda} ");
+                        double rendaLiquida ;
+                        bool rendaLiquidaValid = double.TryParse(Console.ReadLine(), out rendaLiquida);
+                        if (rendaLiquidaValid == false)
+                        {
+                            Console.WriteLine("Renda Inválida.");
+                        }
+
                         break;
                     case "12":
                         numero = 12;
@@ -267,7 +281,6 @@ namespace Dojo
                         numero = 15;
                         Console.WriteLine("\nVocê escolheu o número 15\n-----------------------------\n");
                         break;
-
                     case "sair":
                         Console.WriteLine("\nVocê escolheu sair. Até a próxima!\n--------------------------------\n  ");
                         break;
