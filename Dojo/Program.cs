@@ -256,57 +256,108 @@ namespace Dojo
                         {
                             Console.WriteLine("Renda Inválida.");
                         }
-                        Console.WriteLine("\n\nDigite suas deduções permitidas (digite 0 para parar): ");
-                        List<double> deducoes = new List<double>();
-                        double deducao;
-                        bool deducaoValid = double.TryParse(Console.ReadLine(), out deducao);
-                        while (deducao != 0)
-                        {
-                            if (deducaoValid == false)
-                            {
-                                Console.WriteLine("\n\nDedução inválida Inválida.\n");
-                            }
-                            deducoes.Add(deducao);
-                            deducao = Convert.ToDouble(Console.ReadLine());
-                        }
-                        double deducaoSoma = 0;
-
-                        foreach (var deducaoid in deducoes)
-                        {
-                            deducaoSoma = deducaoSoma + deducaoid;
-                        }
-                        double rendaLiquida = rendaBruta - deducaoSoma;
-                        Console.WriteLine($"Sua Renda Liquida {simboloMoeda} {rendaLiquida}");
-
-                        double aliquota = 0;
-
-                        if (rendaLiquida <= 1903.98)
-                        {
-                            Console.WriteLine($"isento de imposto de renda");
-                        }
-                        else if (rendaLiquida <= 2826.65)
-                        {
-                            aliquota = (7.5 / 100);
-                        }
-                        else if (rendaLiquida <= 3751.05)
-                        {
-                            aliquota = (15 / 100);
-                        }
-                        else if (rendaLiquida <= 4664.68)
-                        {
-                            aliquota = (22.5 / 100);
-                        }
                         else
                         {
-                            aliquota = (27.5 / 100);
+
+                            Console.WriteLine("\n\nDigite suas deduções permitidas (digite 0 para parar): ");
+                            List<double> deducoes = new List<double>();
+                            double deducao;
+                            bool deducaoValid = double.TryParse(Console.ReadLine(), out deducao);
+                            while (deducao != 0)
+                            {
+                                if (deducaoValid == false)
+                                {
+                                    Console.WriteLine("\n\nDedução inválida Inválida.\n");
+                                }
+                                deducoes.Add(deducao);
+                                deducao = Convert.ToDouble(Console.ReadLine());
+                            }
+                            double deducaoSoma = 0;
+
+                            foreach (var deducaoid in deducoes)
+                            {
+                                deducaoSoma = deducaoSoma + deducaoid;
+                            }
+                            double rendaLiquida = rendaBruta - deducaoSoma;
+                            Console.WriteLine($"Sua Renda Liquida {simboloMoeda} {rendaLiquida}");
+
+                            double aliquota = 0;
+
+                            if (rendaLiquida <= 1903.98)
+                            {
+                                Console.WriteLine($"isento de imposto de renda");
+                            }
+                            else if (rendaLiquida <= 2826.65)
+                            {
+                                aliquota = (7.5 / 100);
+                            }
+                            else if (rendaLiquida <= 3751.05)
+                            {
+                                aliquota = (15 / 100);
+                            }
+                            else if (rendaLiquida <= 4664.68)
+                            {
+                                aliquota = (22.5 / 100);
+                            }
+                            else
+                            {
+                                aliquota = (27.5 / 100);
+                            }
+                            double Imposto = rendaLiquida * aliquota;
+                            Console.WriteLine($"Seu imposto de Renda é {Imposto}");
                         }
-                        double Imposto = rendaLiquida * aliquota;
-                        Console.WriteLine($"Seu imposto de Renda é {Imposto}");
                         break;
+
                     case "12":
                         numero = 12;
-                        Console.WriteLine("\nVocê escolheu o número 12\n-----------------------------\n");
+                        Console.WriteLine("\n\n----------------------------\n\nVocê escolheu o número 12 - Advinhar Número!!!\n\n----------------------------\n");
+                        Console.Write($"\nEscolha o numero mínimo para advinhar: ");
+
+                        int Minnumber;
+                        bool MinnumberValid = int.TryParse(Console.ReadLine(), out Minnumber);
+                        if (MinnumberValid == false)
+                        {
+                            Console.WriteLine("número Inválido.");
+                        }
+
+                        Console.Write($"\nEscolha o numero máximo para advinhar: ");
+                        int Maxnumber;
+                        bool MaxnumberValid = int.TryParse(Console.ReadLine(), out Maxnumber);
+                        if (MaxnumberValid == false)
+                        {
+                            Console.WriteLine("número Inválido.");
+                        }
+
+                        Random Advinhacao = new Random();
+
+                        int numeroRadom = Advinhacao.Next(Minnumber, Maxnumber + 1);
+                        int adivinha = 0;
+                        while (adivinha != numeroRadom)
+                        {
+                            Console.Write($"\nAgora tente Adivinhar o numero :>\nResposta:");
+                            bool adivinhaValid = int.TryParse(Console.ReadLine(), out adivinha);
+                            if (adivinhaValid == false)
+                            {
+                                Console.WriteLine("número Inválido.");
+                            }
+                            if (adivinha > numeroRadom)
+                            {
+                                Console.WriteLine($"\n*****O numero é menor que isso :p *****\n\n");
+                                continue;
+                            }
+                            else if (adivinha < numeroRadom)
+                            {
+                                Console.WriteLine($"\n*****O numero é maior que isso :^ *****\n\n");
+                                continue;
+                            }
+                        }
+                        if (adivinha == numeroRadom)
+                        {
+                            Console.WriteLine($"\n\n **********PARABENS!!!!!********** \n\nO número era {numeroRadom} Você Acertou :>\n");
+                            break;
+                        }
                         break;
+
                     case "13":
                         numero = 13;
                         Console.WriteLine("\nVocê escolheu o número 13\n-----------------------------\n");
@@ -328,8 +379,6 @@ namespace Dojo
                         break;
                 }
             } while (opcao.ToLower() != "sair");
-
-
         }
     }
 }
