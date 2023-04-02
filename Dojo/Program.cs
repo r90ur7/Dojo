@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Dojo
 {
@@ -12,13 +9,20 @@ namespace Dojo
         {
             string opcao;
             int numero;
+            CultureInfo culturaSistema = CultureInfo.CurrentCulture;
+            RegionInfo regiaoSistema = new RegionInfo(culturaSistema.Name);
+            string simboloMoeda = regiaoSistema.CurrencySymbol;
 
             do
             {
-                Console.WriteLine("Escolha um número de 0 a 9 ou escreva 'sair':\n---------------------------\n");
+                Console.WriteLine("---------------------------\n\nMENU DO DOJO\n\n---------------------------\n");
+                Console.WriteLine("\nEscolha um número de 0 a 9 ou escreva 'sair':\n");
                 Console.WriteLine("0)Sair:\n");
                 Console.WriteLine("1)Soma:\n");
                 Console.WriteLine("2)Conversão de metros para milímetros:\n");
+                Console.WriteLine("3)Calcular Aumento:\n");
+                Console.WriteLine("4)Calcular Desconto:\n");
+                Console.Write("Resposta: ");
                 opcao = Console.ReadLine().ToLower();
 
                 switch (opcao)
@@ -62,8 +66,9 @@ namespace Dojo
                         float Metros;
                         bool Metrosbol = float.TryParse(Console.ReadLine(), out Metros);
                         float mm = Metros * 1000;
-                        
-                        if(Metrosbol == false) {
+
+                        if (Metrosbol == false)
+                        {
                             Console.WriteLine("Esse número não é válido.");
                             break;
                         }
@@ -71,16 +76,66 @@ namespace Dojo
                         {
                             Console.WriteLine($"A Quantidade {Metros} em milimetros é  {mm}");
                         }
+
                         break;
 
                     case "3":
                         numero = 3;
-                        Console.WriteLine("\nVocê escolheu o número 3\n---------------------------\n");
+                        Console.WriteLine("\n\n----------------------------\n\nVOCÊ ESCOLHEU O 3 - CALCULAR AUMENTO\n\n----------------------------\n");
+                        Console.Write("\nDigite o Valor Inicial: ");
+                        decimal Valor;
+                        bool ValorInicial = decimal.TryParse(Console.ReadLine(), out Valor);
+                        if (ValorInicial == false)
+                        {
+                            Console.WriteLine("Esse número não é válido.");
+                        }
+                        else
+                        {
+                            Console.Write("\nQuantos Porcento de aumento? ");
+                            decimal Porcentagem;
+                            bool PercentValid = decimal.TryParse(Console.ReadLine(), out Porcentagem);
+                            if (PercentValid == false)
+                            {
+                                Console.WriteLine("Esse número não é válido.");
+                            }
+                            else
+                            {
+                                decimal Aumento = (Porcentagem / 100) * Valor;
+                                decimal ValorFinal = (Valor + Aumento);
+                                decimal format = Decimal.Round(ValorFinal, 2);
+                                Console.Write($"\n*****************************\n\nRESULTADO!!!!!\n\n O Valor do Aumento é {simboloMoeda} {Aumento} e Valor Final é {simboloMoeda} {format}\n\n*****************************\n");
+                            }
+                        }
                         break;
                     case "4":
                         numero = 4;
-                        Console.WriteLine("\nVocê escolheu o número 4\n-----------------------------\n");
+                        Console.WriteLine("\n\n----------------------------\n\nVOCÊ ESCOLHEU O 4 - CALCULAR DESCONTO\n\n----------------------------\n");
+                        Console.Write("\nDigite o Valor Inicial: ");
+                        decimal ValorDESconto;
+                        bool ValorDescInicial = decimal.TryParse(Console.ReadLine(), out ValorDESconto);
+                        if (ValorDescInicial == false)
+                        {
+                            Console.WriteLine("Esse número não é válido.");
+                        }
+                        else
+                        {
+                            Console.Write("\nQuantos Porcento de aumento? ");
+                            decimal Porcentagem;
+                            bool PercentValid = decimal.TryParse(Console.ReadLine(), out Porcentagem);
+                            if (PercentValid == false)
+                            {
+                                Console.WriteLine("Esse número não é válido.");
+                            }
+                            else
+                            {
+                                decimal Desconto = (Porcentagem / 100) * ValorDESconto;
+                                decimal ValorDescFinal = (ValorDESconto - Desconto);
+                                decimal formatDEsconto = Decimal.Round(ValorDescFinal, 2);
+                                Console.Write($"\n*****************************\n\nRESULTADO!!!!!\n\n O Valor do Desconto é {simboloMoeda} {Desconto} e Valor Final é {simboloMoeda} {formatDEsconto}\n\n*****************************\n");
+                            }
+                        }
                         break;
+
                     case "5":
                         numero = 5;
                         Console.WriteLine("\nVocê escolheu o número 5\n----------------------------\n");
