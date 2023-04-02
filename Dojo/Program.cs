@@ -1,6 +1,7 @@
-﻿using System;
+﻿using ConsoleTables;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Threading;
 
 namespace Dojo
 {
@@ -203,12 +204,12 @@ namespace Dojo
                         Console.WriteLine("\n\n----------------------------\n\nVocê escolheu o número 9 - MÚLTIPLOS DE 3 ENTRE 0 E 100!!!\n\n----------------------------\n");
                         Console.Write("Resultado!!!\n\n*****************************\n\nOs Multiplos São: ");
                         var Count = 0;
-                        while(Count < 100)
+                        while (Count < 100)
                         {
                             Count = Count + 1;
                             if (Count % 3 == 0)
                             {
-                                if(Count == 99)
+                                if (Count == 99)
                                 {
                                     Console.WriteLine($"{Count} \n\n*****************************\n");
                                 }
@@ -220,27 +221,49 @@ namespace Dojo
                         }
                         break;
                     case "10":
-                        numero = 9;
-                        Console.WriteLine("\nVocê escolheu o número 10\n-----------------------------\n");
+                        numero = 10;
+                        List<int> Fatoriais = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                        var table = new ConsoleTable("Fatoriais");
+                        Console.WriteLine("\n\n----------------------------\n\nVocê escolheu o número 10 - FATORIAIS DE 1 ATÉ 10!!!\n\n----------------------------\n");
+                        foreach (var Fatorial in Fatoriais)
+                        {
+                            int CalcFatorial = CalcularFatorial(Fatorial);
+                            table.AddRow($" De {Fatorial} : {CalcFatorial}");
+                            
+
+                        }
+                        table.Write();
+
+                         int CalcularFatorial(int n)
+                        {
+                            if (n == 0 || n == 1)
+                            {
+                                return 1;
+                            }
+                            else
+                            {
+                                return n * CalcularFatorial(n - 1);
+                            }
+                        }
                         break;
                     case "11":
-                        numero = 9;
+                        numero = 11;
                         Console.WriteLine("\nVocê escolheu o número 11\n-----------------------------\n");
                         break;
                     case "12":
-                        numero = 9;
+                        numero = 12;
                         Console.WriteLine("\nVocê escolheu o número 12\n-----------------------------\n");
                         break;
                     case "13":
-                        numero = 9;
+                        numero = 13;
                         Console.WriteLine("\nVocê escolheu o número 13\n-----------------------------\n");
                         break;
                     case "14":
-                        numero = 9;
+                        numero = 14;
                         Console.WriteLine("\nVocê escolheu o número 14\n-----------------------------\n");
                         break;
                     case "15":
-                        numero = 9;
+                        numero = 15;
                         Console.WriteLine("\nVocê escolheu o número 15\n-----------------------------\n");
                         break;
 
