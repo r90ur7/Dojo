@@ -33,7 +33,6 @@ namespace Dojo
                 Console.WriteLine("10)Fatoriais De 1 Até 10:\n");
                 Console.WriteLine("11)Calcular o Imposto De Renda:\n");
                 Console.WriteLine("12)Adivinhe o Número:\n");
-                Console.WriteLine("15)Jogo Da Velha:\n");
                 Console.Write("Resposta: ");
                 opcao = Console.ReadLine().ToLower();
 
