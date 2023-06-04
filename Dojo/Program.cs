@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Xml.Serialization;
+using Dojo.Desafios.Jogo_Da_Velha;
+
 
 namespace Dojo
 {
@@ -17,6 +20,7 @@ namespace Dojo
 
             do
             {
+
                 Console.WriteLine("---------------------------\n\nMENU DO DOJO\n\n---------------------------\n");
                 Console.WriteLine("\nEscolha um número de 0 a 15 ou escreva 'sair':\n");
                 Console.WriteLine("0)Sair:\n");
@@ -28,6 +32,7 @@ namespace Dojo
                 Console.WriteLine("9)Múltiplos de 3 entre 0 e 100:\n");
                 Console.WriteLine("10)Fatoriais De 1 Até 10:\n");
                 Console.WriteLine("11)Calcular o Imposto De Renda:\n");
+                Console.WriteLine("12)Adivinhe o Número:\n");
                 Console.Write("Resposta: ");
                 opcao = Console.ReadLine().ToLower();
 
@@ -35,10 +40,11 @@ namespace Dojo
                 {
                     case "0":
                         numero = 0;
-                        Console.WriteLine("\nVocê escolheu sair. Até a próxima!\n--------------------------------\n  ");
+                        Console.WriteLine("\nVocê Escolheu Sair. Até a Próxima!\n--------------------------------\n  ");
+                        Console.Write("Presione Qualquer Tecla Para FSechar");
                         opcao = "sair";
+                        Console.ReadKey();
                         break;
-
                     case "1":
                         numero = 1;
                         Console.WriteLine("\nVocê escolheu o número 1 - Soma \n--------------------------------\n");
@@ -318,6 +324,7 @@ namespace Dojo
                         if (MinnumberValid == false)
                         {
                             Console.WriteLine("número Inválido.");
+                            break;
                         }
 
                         Console.Write($"\nEscolha o numero máximo para advinhar: ");
@@ -326,6 +333,7 @@ namespace Dojo
                         if (MaxnumberValid == false)
                         {
                             Console.WriteLine("número Inválido.");
+                            break;
                         }
 
                         Random Advinhacao = new Random();
@@ -368,14 +376,15 @@ namespace Dojo
                         break;
                     case "15":
                         numero = 15;
-                        Console.WriteLine("\nVocê escolheu o número 15\n-----------------------------\n");
+                        Console.WriteLine("\n\n----------------------------\n\nVocê escolheu o número 15 - Jogo Da Velha!!!\n\n----------------------------\n");
+                        Case15.Start();
                         break;
                     case "sair":
                         Console.WriteLine("\nVocê escolheu sair. Até a próxima!\n--------------------------------\n  ");
                         break;
                     default:
-                        Console.WriteLine("\nOpção inválida. Escolha um número de 0 a 9 ou escreva 'sair'\n---------------------------\n");
                         numero = -1;
+                        Console.WriteLine("\nOpção inválida. Escolha um número de 0 a 9 ou escreva 'sair'\n---------------------------\n");
                         break;
                 }
             } while (opcao.ToLower() != "sair");
