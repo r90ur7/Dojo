@@ -28,11 +28,16 @@ namespace Dojo
                 Console.WriteLine("2)Conversão de metros para milímetros:\n");
                 Console.WriteLine("3)Calcular Aumento:\n");
                 Console.WriteLine("4)Calcular Desconto:\n");
+                Console.WriteLine("5)Aluguel carro:\n");
                 Console.WriteLine("6)Calcular IMC:\n");
+                Console.WriteLine("7)Calcular a Cantoneira:\n");
+                Console.WriteLine("8)Calcular a Tabuada:\n");
                 Console.WriteLine("9)Múltiplos de 3 entre 0 e 100:\n");
                 Console.WriteLine("10)Fatoriais De 1 Até 10:\n");
                 Console.WriteLine("11)Calcular o Imposto De Renda:\n");
                 Console.WriteLine("12)Adivinhe o Número:\n");
+                Console.WriteLine("13)finaciamento do veiculo:\n");
+                Console.WriteLine("14)Aposentadoria:\n");
                 Console.WriteLine("15)Jogo Da Velha:\n");
                 Console.Write("Resposta: ");
                 opcao = Console.ReadLine().ToLower();
@@ -151,7 +156,27 @@ namespace Dojo
 
                     case "5":
                         numero = 5;
-                        Console.WriteLine("\nVocê escolheu o número 5\n----------------------------\n");
+                        Console.WriteLine("\n\n----------------------------\n\nVOCÊ ESCOLHEU O 5 - ALUGUEL CARRO\n\n----------------------------\n");
+                        // Valor da diária do carro
+                        double valorDiaria = 100.00;
+
+                        // Valor adicional por quilômetro rodado
+                        double valorPorKm = 0.50;
+
+                        Console.WriteLine("Bem-vindo ao calculador de aluguel de carro!");
+
+                        // Solicita o número de dias que o carro será alugado
+                        Console.Write("Digite o número de dias de aluguel: ");
+                        int numDias = int.Parse(Console.ReadLine());
+
+                        // Solicita a quilometragem total percorrida
+                        Console.Write("Digite a quilometragem total percorrida: ");
+                        double quilometragem = double.Parse(Console.ReadLine());
+
+                        // Calcula o valor do aluguel
+                        double valorAluguel = (valorDiaria * numDias) + (valorPorKm * quilometragem);
+
+                        Console.WriteLine("O valor total do aluguel é: R$ " + valorAluguel.ToString("F2"));
                         break;
                     case "6":
                         numero = 6;
@@ -202,11 +227,49 @@ namespace Dojo
                         break;
                     case "7":
                         numero = 7;
+                        //pedi para o chat mesmo não faço ideia do que seria uma cantoneira ou como calcular uma, aprecia teorema de cantor e uns negocio de porta eu não sei, a 7 foi o chat purinho e não faço ideia do que ele fez.
                         Console.WriteLine("\nVocê escolheu o número 7\n-----------------------------\n");
-                        break;
+                        Console.WriteLine("\n\n----------------------------\n\nVOCÊ ESCOLHEU O 7 - CALCULAR A CANTONEIRA\n\n----------------------------\n");
+                        Console.Write("Digite o número máximo para a Cantoneira: ");
+                        int numeroMaximo = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine("A Cantoneira até o número " + numeroMaximo + " é:");
+
+                        // Declaração da matriz triangular
+                        int[,] cantoneira = new int[numeroMaximo, numeroMaximo];
+
+                        // Preenchimento da matriz triangular
+                        for (int i = 0; i < numeroMaximo; i++)
+                        {
+                            for (int j = 0; j <= i; j++)
+                            {
+                                if (j == 0 || j == i)
+                                    cantoneira[i, j] = 1;
+                                else
+                                    cantoneira[i, j] = cantoneira[i - 1, j - 1] + cantoneira[i - 1, j];
+                            }
+                        }
+
+                        // Exibição da matriz triangular
+                        for (int i = 0; i < numeroMaximo; i++)
+                        {
+                            for (int j = 0; j <= i; j++)
+                            {
+                                Console.Write(cantoneira[i, j] + " ");
+                            }
+                            Console.WriteLine();
+                        }
+                            break;
                     case "8":
                         numero = 8;
-                        Console.WriteLine("\nVocê escolheu o número 8\n-----------------------------\n");
+                        Console.WriteLine("\n\n----------------------------\n\nVOCÊ ESCOLHEU O 8 - TABUADA\n\n----------------------------\n");
+                        Console.Write("Escreva o número que deseja saber a tabuada:");
+                        int num = int.Parse(Console.ReadLine());
+
+                        for (int i = 1; i < 11; i++)
+                        {
+                            Console.WriteLine($"{num} x {i} = {num * i}");
+                        }
                         break;
                     case "9":
                         numero = 9;
@@ -369,7 +432,23 @@ namespace Dojo
 
                     case "13":
                         numero = 13;
-                        Console.WriteLine("\nVocê escolheu o número 13\n-----------------------------\n");
+                        Console.WriteLine("\n\n----------------------------\n\nVocê escolheu o número 12 - FINACIAMENTO DO VEICULO!!!\n\n----------------------------\n");
+                        // Solicita o valor do automóvel
+                        Console.Write("Digite o valor do automóvel: R$ ");
+                        double valorAutomovel = double.Parse(Console.ReadLine());
+
+                        // Solicita a taxa de juros mensal
+                        Console.Write("Digite a taxa de juros mensal (%): ");
+                        double taxaJuros = double.Parse(Console.ReadLine()) / 100;
+
+                        // Solicita a quantidade de meses para parcelamento
+                        Console.Write("Digite a quantidade de meses para parcelamento: ");
+                        int mesesParcelamento = int.Parse(Console.ReadLine());
+
+                        // Calcula o valor total do automóvel parcelado com juros
+                        double valorParcelado = valorAutomovel * (1 + taxaJuros) * mesesParcelamento;
+
+                        Console.WriteLine("O valor total do automóvel parcelado é: R$ " + valorParcelado.ToString("F2"));
                         break;
                     case "14":
                         numero = 14;
